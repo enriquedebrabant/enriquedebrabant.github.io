@@ -1,0 +1,218 @@
+/* ------------------------------
+   BASE
+------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #2a2a2a;
+    line-height: 1.6;
+    display: flex; /* aligne sidebar et contenu */
+    min-height: 100vh;
+}
+
+/* ------------------------------
+   SIDEBAR
+------------------------------ */
+.sidebar {
+    width: 220px;
+    background-color: #e0e0e0; /* gris clair */
+    color: #333;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: sticky; /* sidebar reste visible au scroll */
+    top: 0;
+    height: 100vh;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.05);
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar .nom-site {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar nav ul li a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a[aria-current="page"] {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* ------------------------------
+   CONTENU PRINCIPAL
+------------------------------ */
+.contenu {
+    flex: 1; /* prend tout l’espace restant à droite */
+    padding: 50px 40px;
+    max-width: 900px;
+}
+
+/* ------------------------------
+   SECTIONS
+------------------------------ */
+.section-card {
+    background-color: #f0f0f0;
+    padding: 30px 25px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #222;
+    margin-bottom: 20px;
+    border-left: 5px solid #bbb;
+    padding-left: 12px;
+}
+
+.section-divider {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0 25px;
+}
+
+.section-card p, .section-card ul {
+    color: #333;
+    line-height: 1.7;
+}
+
+.section-card ul {
+    padding-left: 20px;
+}
+
+.section-card ul li {
+    margin-bottom: 10px;
+}
+
+/* ------------------------------
+   PHOTO DE PROFIL
+------------------------------ */
+.photo-profil {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #bbb;
+    display: block;
+    margin-bottom: 25px;
+}
+
+/* ------------------------------
+   BOUTONS PRINCIPAUX
+------------------------------ */
+.bouton-principal {
+    display: inline-block; /* visible sur PC et mobile */
+    background-color: #999;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.bouton-principal:hover {
+    background-color: #777;
+    transform: translateY(-2px);
+}
+
+/* ------------------------------
+   BOUTON MENU MOBILE
+------------------------------ */
+.menu-toggle {
+    display: none; /* caché par défaut sur desktop */
+}
+
+/* ------------------------------
+   RESPONSIVE - MOBILES (≤768px)
+------------------------------ */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    /* Bouton menu hamburger */
+    .menu-toggle {
+        display: flex;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1100;
+        font-size: 1.5rem;
+        background-color: white;
+        color: #222;
+        border: none;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        transition: background 0.3s ease;
+    }
+    .menu-toggle:hover {
+        background-color: #f0f0f0;
+    }
+
+    /* Sidebar cachée par défaut sur mobile */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        width: 220px;
+        height: 100vh;
+        padding: 30px 20px;
+        box-shadow: 2px 0 6px rgba(0,0,0,0.05);
+        z-index: 1000;
+    }
+    .sidebar.active {
+        left: 0;
+    }
+    .sidebar .nom-site {
+        margin-top: 70px; /* nom décalé sous le bouton */
+    }
+
+    /* Contenu responsive */
+    .contenu {
+        margin-left: 0;
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+
+    /* Bouton principal centré et responsive */
+    .bouton-principal {
+        width: 90%;
+        max-width: 320px;
+        margin: 30px auto;
+    }
+}
